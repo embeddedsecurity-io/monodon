@@ -78,10 +78,11 @@ uint32_t size = 0;
 uint8_t * i2c_current;
 
 void uart1_log(char * message, size_t len){
+	// opportunistic log - if the HAL is busy, we throw away the message.
 	HAL_StatusTypeDef status;
-	do{
-		status = HAL_UART_Transmit_IT(&huart1, (uint8_t *) message, len);
-	} while( status != HAL_OK );
+	status = HAL_UART_Transmit_IT(&huart1, (uint8_t *) message, len);
+	if (status != HAL_OK)
+		free(message);
 }
 
 void parse_uart2_rx_buffer(){
@@ -353,7 +354,7 @@ static void MX_I2C1_Init(void)
   hi2c1.Instance = I2C1;
   hi2c1.Init.ClockSpeed = 100000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0x42;
+  hi2c1.Init.OwnAddress1 = 66;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
   hi2c1.Init.OwnAddress2 = 0;
