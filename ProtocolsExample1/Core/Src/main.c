@@ -230,7 +230,7 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c){
 		i2c_current = i2c_current + bytes_transferred;
 		char * buffer;
 		int len;
-		len = asprintf(&buffer, "I2C1: READ FLASH ended! %lu bytes transfered\r\n", bytes_transferred);
+		len = asprintf(&buffer, "I2C1: READ FLASH ended! %lu bytes transferred\r\n", bytes_transferred);
 		uart1_log(buffer, len);
 	}
 }

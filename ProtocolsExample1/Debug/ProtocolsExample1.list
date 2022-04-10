@@ -587,7 +587,7 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c){
  8000464:	6013      	str	r3, [r2, #0]
 		char * buffer;
 		int len;
-		len = asprintf(&buffer, "I2C1: READ FLASH ended! %lu bytes transfered\r\n", bytes_transferred);
+		len = asprintf(&buffer, "I2C1: READ FLASH ended! %lu bytes transferred\r\n", bytes_transferred);
  8000466:	f107 030c 	add.w	r3, r7, #12
  800046a:	697a      	ldr	r2, [r7, #20]
  800046c:	4908      	ldr	r1, [pc, #32]	; (8000490 <HAL_I2C_ErrorCallback+0x58>)
